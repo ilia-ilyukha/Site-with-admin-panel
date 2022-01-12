@@ -29,6 +29,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
   <div class="wrapper">
 
     <!-- Preloader -->
@@ -227,18 +228,6 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./index2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v3</p>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa fa-cog"></i>
                     <p>
@@ -248,10 +237,30 @@
                   </a>
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                      <a href="admin_panel/articles" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Articles</p>
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-circle"></i>
+                        <p>
+                          Articles
+                          <i class="right fas fa-angle-left"></i>
+                        </p>
                       </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="{{ route('articles.index') }}" class="nav-link">
+                          <i class="nav-icon fas fa-minus"></i>
+                            <p>Articles List</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{{ route('articles.create') }}" class="nav-link">
+                          <i class="nav-icon fas fa-minus"></i>
+                            <p>
+                              Add article
+                              <i class="right fas "></i>
+                            </p>
+                          </a>
+                        </li>
+                      </ul>
                     </li>
                     <li class="nav-item">
                       <a href="{{ route('category.index') }}" class="nav-link">

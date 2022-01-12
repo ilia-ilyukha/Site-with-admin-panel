@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,8 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     // App\Http\Controllers\Admin;
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index']);
     
-    Route::get('/articles', [App\Http\Controllers\Admin\ArticleController::class, 'index']);
+    // Route::get('/articles', [App\Http\Controllers\Admin\ArticleController::class, 'index']);
 
+    Route::resource('articles', ArticleController::class);
     Route::resource('category', CategoryController::class);
 });

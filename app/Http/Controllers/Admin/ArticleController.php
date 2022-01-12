@@ -37,7 +37,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.article.add', []);
     }
 
     /**
@@ -48,7 +48,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       echo 'hello!';
     }
 
     /**
