@@ -13,9 +13,9 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>{{ $post_count }}</h3>
+                        <h3>{{ $articles_count }}</h3>
 
-                        <p>New Orders</p>
+                        <p> articles</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
