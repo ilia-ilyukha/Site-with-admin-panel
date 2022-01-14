@@ -25,7 +25,7 @@ class GenerateMenus
             $menu->about->add('Who are we?', 'who-we-are');
             $menu->about->add('What we do?', 'what-we-do');
           
-            $menu->add('Services', 'services');
+            $menu->add('Blog', 'blog');
             $menu->add('Contact',  'contact');
           
           });
