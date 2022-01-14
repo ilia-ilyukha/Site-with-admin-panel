@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
-
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -68,10 +68,27 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        $author = DB::table('article_authors')->find($article['id']);
+
+// echo '<pre>'; var_dump($article['id']); die('123');
+        return view('admin.article.edit', [
+            'article' => $article,
+            'author'  => $author
+        ]);  
     }
+    // public function edit(Post $post)
+    // {
+    //     $categories = Category::orderBy('created_at', 'DESC')->get();
+
+    //     return view('admin.post.edit', [
+    //         'categories' => $categories,
+    //         'post' => $post,
+    //     ]);
+    // }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -104,11 +121,11 @@ class ArticleController extends Controller
      */
     public function list()
     {
-        $articles = Article::leftJoin('article_authors', 'articles.author_id', '=', 'article_authors.id')
-                ->orderBy('articles.name')
-                ->take(10)
-                ->get(['articles.*', 'article_authors.nick as nickname']);
+            $articles = Article::leftJoin('article_authors', 'articles.author_id', '=', 'article_authors.id')
+                    ->orderBy('articles.name')
+                    ->take(10)
+                    ->get(['articles.*', 'article_authors.nick as nickname']);
 
-        return $articles;
+            return $articles;
     }
 }
