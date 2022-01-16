@@ -7,3 +7,9 @@ username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your confi
 3) php artisan key:generate
 
 4) php artisan migrate
+
+5) php artisan permission:create-role user // Creating role with name "user"
+
+Used links:
+https://spatie.be/ - package for user rules, permissons ext.
+https://adminlte.io/ - free html-template for admin panel.
