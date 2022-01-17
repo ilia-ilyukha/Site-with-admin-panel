@@ -61,7 +61,7 @@
 
                                 <!-- <input type="text" id="inputClientCompany" class="form-control" value="{{ $author->nick }}"> -->
                             </div>
-                            <a href="#" class="btn btn-secondary">Cancel</a>
+                            <a href="{{ route('articles.index') }}" class="btn btn-secondary">Cancel</a>
                             <input type="submit" value="Edit" class="btn btn-success float-right">
 
                         </div>
