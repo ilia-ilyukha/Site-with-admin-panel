@@ -86,7 +86,7 @@
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="#">
+                                    <a class="btn btn-info btn-sm" href="{{ route('articles.edit', $article) }}" >
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit

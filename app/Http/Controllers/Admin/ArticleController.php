@@ -22,9 +22,8 @@ class ArticleController extends Controller
         foreach ($articles as $article) {
             $article['status'] = ($article['status_id'] == 1) ? "Enable" : "Disable";
         }
-        // echo '<pre>'; print_r($articles); die('123');
 
-        return view('admin.article.index',[
+        return view('admin.article.index', [
             'article_count' => $article_count,
             'articles'      => $articles
         ]);
@@ -37,7 +36,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('admin.article.add', []);
+        $authors = DB::table('article_authors')->get();
+        return view('admin.article.add', [
+            'authors' => $authors
+        ]);
     }
 
     /**
@@ -48,7 +50,18 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-       echo 'hello!';
+        $article = new Article();
+
+        $article->name = $request->title;
+        $article->status_id = $request->status;
+        $article->annotation = $request->annotation;
+        $article->author_id = $request->author;
+        $article->created_at = date('Y-m-d'); 
+        $article->text = $request->text;
+        $article->image = $request->image;
+        $article->save();
+
+        return redirect()->back()->withSuccess('Статья была успешно добавлена!');
     }
 
     /**
@@ -70,13 +83,13 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        $author = DB::table('article_authors')->find($article['id']);
+        $author = DB::table('article_authors')->find($article['author_id']);
+        $authors = DB::table('article_authors')->get();
 
-// echo '<pre>'; var_dump($article['id']); die('123');
         return view('admin.article.edit', [
             'article' => $article,
-            'author'  => $author
-        ]);  
+            'authors'  => $authors
+        ]);
     }
     // public function edit(Post $post)
     // {
@@ -97,9 +110,18 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $article->name = $request->name;
+        $article->status_id = $request->status;
+        $article->annotation = $request->annotation;
+        $article->author_id = $request->author;
+        $article->created_at = date('Y-m-d'); 
+        $article->text = $request->text;
+        $article->image = $request->image;
+        $article->save();
+
+        return redirect()->back()->withSuccess('Статья была успешно обновлена!');
     }
 
     /**
@@ -121,11 +143,11 @@ class ArticleController extends Controller
      */
     public function list()
     {
-            $articles = Article::leftJoin('article_authors', 'articles.author_id', '=', 'article_authors.id')
-                    ->orderBy('articles.name')
-                    ->take(10)
-                    ->get(['articles.*', 'article_authors.nick as nickname']);
+        $articles = Article::leftJoin('article_authors', 'articles.author_id', '=', 'article_authors.id')
+            ->orderBy('articles.id', 'DESC')
+            ->take(10)
+            ->get(['articles.*', 'article_authors.nick as nickname']);
 
-            return $articles;
+        return $articles;
     }
 }

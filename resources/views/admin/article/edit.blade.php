@@ -5,11 +5,18 @@
 @section('content')
 <section class="content">
     <div class="container-fluid">
+    @if (session('success'))
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i>{{ session('success') }}</h4>
+    </div>
+    @endif
         <div class="row">
             <!-- left column -->
             <div class="col-md-6">
-                <form action="" method="post">
+                <form action="{{ route('articles.update', $article['id']) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">General</h3>
@@ -22,34 +29,43 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputStatus">Status</label>
-                                <select id="inputStatus" class="form-control custom-select">
+                                <label for="status">Status</label>
+                                <select id="status" class="form-control custom-select" name="status">
                                     <option disabled="">Select one</option>
                                     <option value="1">Enabled </option>
                                     <option value="2">Disabled</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="inputName">Project Name</label>
-                                <input type="text" id="inputName" class="form-control" value="{{ $article['name'] }}">
+                                <label for="name">Project Name</label>
+                                <input type="text" id="name" name="name" class="form-control" value="{{ $article['name'] }}">
                             </div>
                             <div class="form-group">
-                                <label for="inputAnnotation">Annotation</label>
-                                <textarea id="inputAnnotation" class="form-control" rows="2">{{ $article['annotation'] }}</textarea>
+                                <label for="annotation">Annotation</label>
+                                <textarea id="annotation" name="annotation" class="form-control" rows="2">{{ $article['annotation'] }}</textarea>
                             </div>
                             <div class="form-group">
-                                <label for="inputAnnotation">Text</label>
-                                <textarea id="inputAnnotation" class="form-control" rows="6">{{ $article['text'] }}</textarea>
+                                <label for="text">Text</label>
+                                <textarea id="text" name="text" class="form-control" rows="6">{{ $article['text'] }}</textarea>
                             </div>
                             <div class="form-group">
-                                <label for="inputClientCompany">Created at:</label>
-                                <input type="text" id="inputClientCompany" class="form-control" value="{{ $article['created_at'] }}">
+                                <label for="created_at">Created at:</label>
+                                <input type="text" name="created_at" id="inputClientCompany" class="form-control" value="{{ $article['created_at'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input type="text" id="image" class="form-control" name="image" value="{{ $article['image'] }}">
                             </div>
 
-
                             <div class="form-group">
-                                <label for="inputClientCompany">Author</label>
-                                <input type="text" id="inputClientCompany" class="form-control" value="{{ $author->nick }}">
+                                <label for="author">Author</label>
+                                <select class="custom-select rounded-0" id="exampleSelectRounded0" name="author">
+                                    @foreach ($authors as $author)
+                                    <option @if ($author->id === $article['author_id']) selected @endif value="{{ $author->id }}">{{ $author->nick }}</option>
+                                    @endforeach
+                                </select>
+
+                                <!-- <input type="text" id="inputClientCompany" class="form-control" value="{{ $author->nick }}"> -->
                             </div>
                             <a href="#" class="btn btn-secondary">Cancel</a>
                             <input type="submit" value="Edit" class="btn btn-success float-right">
