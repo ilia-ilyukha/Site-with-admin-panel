@@ -240,13 +240,13 @@
                       <ul class="nav nav-treeview">
                         <li class="nav-item">
                           <a href="{{ route('articles.index') }}" class="nav-link">
-                          <i class="nav-icon fas fa-minus"></i>
+                            <i class="nav-icon fas fa-minus"></i>
                             <p>Articles List</p>
                           </a>
                         </li>
                         <li class="nav-item">
                           <a href="{{ route('articles.create') }}" class="nav-link">
-                          <i class="nav-icon fas fa-minus"></i>
+                            <i class="nav-icon fas fa-minus"></i>
                             <p>
                               Add article
                               <i class="right fas "></i>
@@ -885,6 +885,12 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+      @if (session('success'))
+      <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i>{{ session('success') }}</h4>
+      </div>
+      @endif
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container-fluid">
