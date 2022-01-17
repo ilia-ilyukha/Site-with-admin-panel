@@ -18,17 +18,17 @@ class BlogController extends Controller
 
         $article_count = Article::all()->count();
         $articles = $this->list();
-        foreach ($articles as $article) {
-            $article['status'] = ($article['status_id'] == 1) ? "Enable" : "Disable";
-            echo $article->name .  "<br>";
-            echo $article->author_id .  "<br>";
-            echo $article->annotation .  "<br>";
-            echo $article->text .  "<br>";
+        // foreach ($articles as $article) {
+        //     $article['status'] = ($article['status_id'] == 1) ? "Enable" : "Disable";
+        //     echo $article->name .  "<br>";
+        //     echo $article->author_id .  "<br>";
+        //     echo $article->annotation .  "<br>";
+        //     echo $article->text .  "<br>";
 
-            echo "<br>";
-        }
-        echo '<pre>';
-        die('123');  
+        //     echo "<br>";
+        // }
+        // echo '<pre>'; var_dump($articles);
+        // die('123');  
         // [id] => 1
         // [name] => First post
         // [author_id] => 1
@@ -51,7 +51,7 @@ class BlogController extends Controller
     public function list()
     {
         $articles = Article::leftJoin('article_authors', 'articles.author_id', '=', 'article_authors.id')
-            ->orderBy('articles.name')
+            ->orderBy('articles.id', 'DESC')
             ->take(10)
             ->get(['articles.*', 'article_authors.nick as nickname']);
 
