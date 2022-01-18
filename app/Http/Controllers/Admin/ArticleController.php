@@ -91,17 +91,6 @@ class ArticleController extends Controller
             'authors'  => $authors
         ]);
     }
-    // public function edit(Post $post)
-    // {
-    //     $categories = Category::orderBy('created_at', 'DESC')->get();
-
-    //     return view('admin.post.edit', [
-    //         'categories' => $categories,
-    //         'post' => $post,
-    //     ]);
-    // }
-
-
 
     /**
      * Update the specified resource in storage.

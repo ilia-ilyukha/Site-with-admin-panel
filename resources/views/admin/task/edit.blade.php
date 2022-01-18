@@ -24,25 +24,31 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="name">Title</label>
-                                <input type="text" id="name" name="name" class="form-control" value="{{ $task['title'] }}">
+                                <input type="text" id="title" name="title" class="form-control" value="{{ $task['title'] }}">
                             </div>
                             <div class="form-group">
                                 <label for="text">Description</label>
-                                <textarea id="text" name="text" class="form-control" rows="6">{{ $task['description'] }}</textarea>
+                                <textarea id="description" name="description" class="form-control" rows="6">{{ $task['description'] }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="created_at">Created at:</label>
                                 <input type="text" name="created_at" id="inputClientCompany" class="form-control" value="{{ $task['created_at'] }}">
                             </div>
-
                             <div class="form-group">
-                                <label for="author">Assignee</label>
-                                <p>{{ $task->assignee }}</p>
+                                <label for="assignee">Assignee</label>                                
+                                <select class="custom-select rounded-0" id="assignee" name="assignee">
+                                    @foreach ($assignees as $assignee)
+                                    <option value="{{ $assignee->id }}" @if ($assignee->id == $task->assignee) selected @endif value="{{ $assignee->id }}">{{ $assignee->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-
                             <div class="form-group">
                                 <label for="author">Author</label>
-                                <p>{{ $task->author_id }}</p>
+                                <select class="custom-select rounded-0" id="authors" name="author">
+                                    @foreach ($authors as $author)
+                                    <option value="{{ $author->id }}" @if ($author->id === $task->author_id) selected @endif value="{{ $author->id }}">{{ $author->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Cancel</a>
                             <input type="submit" value="Edit" class="btn btn-success float-right">
@@ -144,4 +150,9 @@
         </div>
     </div>
 </section>
+<script>
+    document.ready(function() {
+        $('.select2-selection').width('auto');
+    });
+</script>
 @endsection

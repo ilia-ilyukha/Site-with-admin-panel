@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->char('assignee', 50);
             $table->string('description', 150);
             $table->integer('author_id');
+            $table->integer('priority_id');
             $table->timestamps();
         });
 

@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="{{ asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css') }}">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -277,7 +278,7 @@
                       <i class="right fas fa-angle-left"></i>
                     </p>
                   </a>
-                  <ul class="nav nav-treeview"> 
+                  <ul class="nav nav-treeview">
                     <li class="nav-item">
                       <a href="{{ route('tasks.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-minus"></i>
@@ -289,8 +290,13 @@
                         <i class="nav-icon fas fa-minus"></i>
                         <p>All tasks</p>
                       </a>
+                    <li class="nav-item">
+                      <a href="{{ route('tasks.create') }}" class="nav-link">
+                        <i class="nav-icon fas fa-plus"></i>
+                        <p>Add task</p>
+                      </a>
                     </li>
-                   
+
                   </ul>
                 </li>
               </ul>
@@ -935,7 +941,7 @@
 
       <!-- Main content -->
       <section class="content">
-      @yield('content')
+        @yield('content')
       </section>
       <!-- /.content -->
     </div>
@@ -990,6 +996,8 @@
   <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
 </html>
