@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Blog\BlogController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,11 +28,14 @@ Route::get('/blog', [App\Http\Controllers\Blog\BlogController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
-    // App\Http\Controllers\Admin;
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index']);
     
     // Route::get('/articles', [App\Http\Controllers\Admin\ArticleController::class, 'index']);
 
     Route::resource('articles', ArticleController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('tasks', TaskController::class);
+    Route::post('tasks/addHours', [App\Http\Controllers\Admin\TaskController::class, 'addHours'])->name('tasks/addHours');
+
+
 });
