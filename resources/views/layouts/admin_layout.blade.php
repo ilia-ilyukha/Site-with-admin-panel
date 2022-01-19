@@ -27,6 +27,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css') }}">
 
+  <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -997,7 +998,7 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-</body>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  </body>
 
 </html>

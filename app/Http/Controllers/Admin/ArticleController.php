@@ -57,7 +57,7 @@ class ArticleController extends Controller
         $article->annotation = $request->annotation;
         $article->author_id = $request->author;
         $article->created_at = date('Y-m-d'); 
-        $article->text = $request->text;
+        $article->text = htmlentities($request->text, ENT_NOQUOTES, 'UTF-8');
         $article->image = $request->image;
         $article->save();
 
@@ -76,16 +76,16 @@ class ArticleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing article.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Article $article)
     {
+        $article['text'] = html_entity_decode($article['text']);
         $author = DB::table('article_authors')->find($article['author_id']);
         $authors = DB::table('article_authors')->get();
-
         return view('admin.article.edit', [
             'article' => $article,
             'authors'  => $authors

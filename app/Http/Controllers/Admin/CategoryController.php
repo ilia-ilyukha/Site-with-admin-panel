@@ -16,11 +16,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.category.list', ['categories' => $categories]);
-        // echo "Index";
-        // echo '<pre>';
-        // var_dump($categories);
-        // die('123');
+        return view('admin.category.list', [
+            'categories' => $categories
+        ]);
     }
 
     /**
