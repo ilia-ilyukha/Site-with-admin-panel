@@ -300,6 +300,30 @@
 
                   </ul>
                 </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-columns"></i>
+                    <p>
+                      Catalog
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="{{ route('product.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-minus"></i>
+                        <p>Products</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('product.create') }}" class="nav-link">
+                        <i class="nav-icon fas fa-plus"></i>
+                        <p>Add product</p>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li>
               </ul>
             </li>
           </ul>
@@ -999,6 +1023,6 @@
   <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  </body>
+</body>
 
 </html>

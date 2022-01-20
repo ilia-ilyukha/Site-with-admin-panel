@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\TaskController;
-use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\Admin\Catalog\ProductController;
 use App\Http\Controllers\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +33,7 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     
     // Route::get('/articles', [App\Http\Controllers\Admin\ArticleController::class, 'index']);
 
+    Route::resource('product', ProductController::class);
     Route::resource('articles', ArticleController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('tasks', TaskController::class);
