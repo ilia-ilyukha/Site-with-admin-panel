@@ -10,6 +10,8 @@ class Desc extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function lists(){
         return $this->hasMany(DescList::class);
     }

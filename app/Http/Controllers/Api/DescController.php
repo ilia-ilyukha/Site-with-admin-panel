@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DescStoreRequest;
 use Illuminate\Http\Request;
 
 use App\Models\Desc;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\DescResource;
+use Facade\FlareClient\Http\Response;
 
 class DescController extends Controller
 {
@@ -27,9 +29,11 @@ class DescController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DescStoreRequest $request)
     {
-        //
+        $created_desc = Desc::create($request->validated());
+
+        return new DescResource($created_desc);
     }
 
     /**
@@ -38,9 +42,9 @@ class DescController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Desc $desc)
     {
-        return new DescResource(Desc::with('lists')->findOrFail($id));
+        return new DescResource($desc);
     }
 
     /**
@@ -50,9 +54,11 @@ class DescController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DescStoreRequest $request, Desc $desc)
     {
-        //
+        $desc->update($request->validated());
+
+        return new DescResource($desc);
     }
 
     /**
@@ -61,8 +67,10 @@ class DescController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Desc $desc)
     {
-        //
+        $desc->delete();
+
+        return response(null, Response);
     }
 }
