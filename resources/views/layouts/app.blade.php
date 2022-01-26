@@ -7,8 +7,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Site-admin.com') }}</title>
     <title>@yield('name') - Site-admin.com</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
