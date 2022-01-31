@@ -1,0 +1,12 @@
+$ cd my-app
+$ composer require laravel/ui
+$ php artisan ui vue
+$ npm install && npm run dev
+Note: if you’re running this for the first time, Mix might need to install additional dependencies which it’ll pull in automatically. If you see an error message, just run npm run dev again.
+
+
+<script src="{{ mix('/js/app.js') }}"></script>
+
+<div id="app">
+   <example-component></example-component>
+</div>v
