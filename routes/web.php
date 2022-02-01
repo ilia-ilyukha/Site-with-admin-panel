@@ -38,6 +38,4 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::resource('tasks', TaskController::class);
     // Request for adding hours to task
     Route::post('tasks/addHours', [App\Http\Controllers\Admin\TaskController::class, 'addHours'])->name('tasks/addHours');
-
-    Route::resource('/trello', TrelloController::class);
 });

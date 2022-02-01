@@ -28,6 +28,14 @@
   <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css') }}">
 
   <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+  <!-- jQuery -->
+  <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>  <!-- JQVMap -->
+  <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+  <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -987,10 +995,6 @@
   </div>
   <!-- ./wrapper -->
 
-  <!-- jQuery -->
-  <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -1001,11 +1005,7 @@
   <script src="{{ asset('admin/plugins/chart.js') }}/Chart.min.js') }}"></script>
   <!-- Sparkline -->
   <script src="{{ asset('admin/plugins/sparklines/sparkline.js') }}"></script>
-  <!-- JQVMap -->
-  <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-  <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+
   <!-- daterangepicker -->
   <script src="{{ asset('admin/plugins/moment/moment.min.js') }}"></script>
   <script src="{{ asset('admin/plugins/daterangepicker/daterangepicker.js') }}"></script>

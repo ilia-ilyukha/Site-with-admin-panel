@@ -35,10 +35,15 @@
                                 <input type="text" name="created_at" id="inputClientCompany" class="form-control" value="{{ $task['created_at'] }}">
                             </div>
                             <div class="form-group">
-                                <label for="assignee">Assignee</label>                                
-                                <select class="custom-select rounded-0" id="assignee" name="assignee">
-                                    @foreach ($assignees as $assignee)
-                                    <option value="{{ $assignee->id }}" @if ($assignee->id == $task->assignee) selected @endif value="{{ $assignee->id }}">{{ $assignee->name }}</option>
+                                <label for="assignee">Assignee</label>
+                                <select class="assignees-select2 custom-select rounded-0" name="assignees[]" multiple="multiple" id="assignees">
+                                    @foreach ($users as $user)
+                                    <option value="{{ $user->id }}" 
+                                    @foreach ($assignees as $assignee) 
+                                        @if ($assignee->developer_id == $user->id) selected @endif          
+                                    @endforeach
+
+                                    value="{{ $user->id }}"> {{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -63,6 +68,7 @@
 
             </div>
 
+            <!-- Hours form -->
             <div class="col-md-6">
                 <form action="{{ route('tasks/addHours', $task['id']) }}" method="POST">
                     @csrf
@@ -97,7 +103,7 @@
             <!-- /.card -->
             <div class="card card-info">
                 <div class="card-body p-0">
-                    <div class="form-group">
+                    <div class="form-group hours-spent">
                         <h2>Total hours spent: <b>{{ $hours_quantity }}</b></h2>
                     </div>
                 </div>
@@ -153,6 +159,24 @@
 <script>
     document.ready(function() {
         $('.select2-selection').width('auto');
+    });
+</script>
+<script>
+    function formatState(state) {
+        if (!state.id) {
+            return state.text;
+        }
+        var baseUrl = "/user/pages/images/flags";
+        var $state = $(
+            '<span><img src="' + baseUrl + '/' + state.element.value.toLowerCase() + '.png" class="img-flag" /> ' + state.text + '</span>'
+        );
+        return $state;
+    };
+    $(document).ready(function() {
+        $(".assignees-select2").select2({
+            // templateResult: formatState,
+            width: '100%',
+        });
     });
 </script>
 @endsection

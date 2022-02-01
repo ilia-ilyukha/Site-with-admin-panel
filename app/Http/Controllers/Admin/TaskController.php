@@ -16,7 +16,6 @@ class TaskController extends Controller
 
     /*
     TODO:
-    More than one assignee in task;
     Calendar with planning tasks;
     Tabs "Active", "In progress", "Done" etc.;    
     Task history;
@@ -95,11 +94,15 @@ class TaskController extends Controller
         $hours = $this->hoursList($task['id']);
         $hours_quantity = TasksHours::where('task_id', $task['id'])->sum('quantity');
 
+        $assignees = TasksDevelopers::where('task_id', $task['id'])->get();       
+        //  echo '<pre>'; var_dump($assignees); die('123');
+
         return view('admin.task.edit', [
             'task' => $task,
             'hours' => $hours,
             'hours_quantity' => $hours_quantity,
-            'assignees' => $users,
+            'assignees' => $assignees,
+            'users' => $users,
             'authors' => $users
         ]);
     }
@@ -118,25 +121,22 @@ class TaskController extends Controller
     public function update(Request $request, Tasks $task)
     {
         //
-        //***Code for more than one developers - now select2 doesn't work.
+        //***Code adds for more than one developers.
         //
-        // if (count($request->developers) > 0) {
-        //     TasksDevelopers::where('task_id', $task->id)->delete();
+        if (count($request->assignees) > 0) {
+            TasksDevelopers::where('task_id', $task->id)->delete();
 
-        //     foreach ($request->developers as $developer) {
-        //         $data[] = [
-        //             'task_id' => $task->id,
-        //             'developer_id' => $developer
-        //         ];
-        //     }
-        //     TasksDevelopers::insert($data);
-        // }
-
-        // echo '<pre>'; var_dump($request->assignee); die('123');
-
+            foreach ($request->assignees as $assignee) {
+                $data[] = [
+                    'task_id' => $task->id,
+                    'developer_id' => $assignee
+                ];
+            }
+            TasksDevelopers::insert($data);
+        }
 
         $task->title = $request->title;
-        $task->assignee = $request->assignee;
+        $task->assignee = $request->assignees[0];
         $task->description = $request->description;
         $task->author_id = $request->author;
         // $task->priority_id = $request->priority_id;
