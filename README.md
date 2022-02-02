@@ -12,4 +12,7 @@ username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your confi
 
 Used links:
 https://spatie.be/ - package for user rules, permissons ext.
+
 https://adminlte.io/ - free html-template for admin panel.
+
+https://select2.org/
