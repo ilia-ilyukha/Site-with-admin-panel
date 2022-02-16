@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
+    /*
+        TODO:
+        1) Add comments to post
+    */
+
     /**
      * Display a listing of the resource.
      *
