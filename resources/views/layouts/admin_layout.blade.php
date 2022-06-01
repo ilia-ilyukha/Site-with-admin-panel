@@ -334,15 +334,21 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                <a href="{{ route('employers.index') }}" class="nav-link">
-                  <i class=" nav-icon fas fa-user"></i>
-                  
-                  
-                    <p>
-                      Employers
-                    </p>
-                </a>
-          </li>
+                  <a href="{{ route('employers.index') }}" class="nav-link">
+                    <i class=" nav-icon fas fa-user"></i>
+                      <p>
+                        Employers
+                      </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('departments.index') }}" class="nav-link">
+                    <i class=" nav-icon fas fa-user"></i>
+                      <p>
+                        Departments
+                      </p>
+                  </a>
+                </li>
               </ul>
             </li>
           </ul>
@@ -969,7 +975,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">@yield('name')</h1>
+              <h1 class="m-0">@yield('h1')</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">

@@ -18,6 +18,10 @@ class EmployersController extends Controller
     {
 
         $employers = Employers::all();
+        $employers = DB::table('employers')
+        ->leftJoin('departments', 'employers.department_id', '=', 'departments.id')
+        ->get(['employers.*', 'departments.name as department_name']);
+        
         return view('admin.employers.index', [
             'employers'      => $employers
         ]);
