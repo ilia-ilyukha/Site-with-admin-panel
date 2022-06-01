@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Article;
+use Auth;
+use App\Models\Employers;
 
 class HomeController extends Controller
 {
@@ -17,6 +19,7 @@ class HomeController extends Controller
     public function index()
     {
         $post_count = Article::all()->count();
+        $userId = Auth::id();
 
         return view('admin.home.index', [
             "articles_count" => $post_count

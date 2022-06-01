@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\Admin\EmployersController;
 use App\Http\Controllers\Admin\TrelloController;
 use App\Http\Controllers\Admin\Catalog\ProductController;
 use App\Http\Controllers\Blog\PostController;
@@ -38,4 +39,6 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::resource('tasks', TaskController::class);
     // Request for adding hours to task
     Route::post('tasks/addHours', [App\Http\Controllers\Admin\TaskController::class, 'addHours'])->name('tasks/addHours');
+
+    Route::resource('employers', EmployersController::class);
 });
