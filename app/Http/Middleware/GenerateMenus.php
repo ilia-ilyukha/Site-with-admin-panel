@@ -18,15 +18,12 @@ class GenerateMenus
     {
         \Menu::make('MyNavBar', function($menu){
 
-            $menu->add('Home');
+            $menu->add('Home')->link->attr(['class' => "nav-link active"]);
           
-            $menu->add('About');
-          
-            $menu->about->add('Who are we?', 'who-we-are');
-            $menu->about->add('What we do?', 'what-we-do');
-          
-            $menu->add('Blog', 'blog');
-            $menu->add('Contact',  'contact');
+            $menu->add('About')->link->attr(['class' => "nav-link active"]);
+
+            $menu->add('Blog', 'blog')->link->attr(['class' => "nav-link active"]);
+            $menu->add('Contact',  'contact')->link->attr(['class' => "nav-link active"]);
           
           });
 

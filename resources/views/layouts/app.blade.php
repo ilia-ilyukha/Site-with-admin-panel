@@ -17,10 +17,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+   
+    
+    @if(isset($styles))
+        @foreach ($styles as $style)
+            <link href="{{ asset( $style ) }}" rel="stylesheet">
+        @endforeach
+    @endif
 </head>
 
 <body>
-<div id="app">
+    <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -31,11 +38,10 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
 
-                    </ul>
-
+                    <div class="container">
+                            {!! $MyNavBar->asUl(['class' => 'nav justify-content-center'] ) !!}
+                        </div>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -75,9 +81,7 @@
         </nav>
 
         <header>
-
-            {!! $MyNavBar->asUl(['class' => 'awesome-ul'] ) !!}
-            
+           
         </header>
         <main class="py-4">
             @yield('content')

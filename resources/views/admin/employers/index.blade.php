@@ -44,12 +44,12 @@
                             @foreach ($employers as $employee)
                             <tr>
                                 <td>
-                                    <a href="#"> 
+                                    <a href="{{ route('employers.edit', $employee->id) }}"> 
                                         {{ $employee->id }} 
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#">
+                                    <a href="{{ route('employers.edit', $employee->id) }}">
                                         {{ $employee->name }}
                                     </a>
                                 </td>

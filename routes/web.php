@@ -43,4 +43,8 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
 
     Route::resource('employers', EmployersController::class);
     Route::resource('departments', DepartmentController::class);
+
+    Route::get('employers-import', [EmployersController::class, 'import'])->name('employers-import');
+    Route::post('employers-import', [EmployersController::class, 'import'])->name('employers-import');
+
 });

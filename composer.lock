@@ -1521,6 +1521,10 @@
             "keywords": [
                 "laravel"
             ],
+            "support": {
+                "issues": "https://github.com/lavary/laravel-menu/issues",
+                "source": "https://github.com/lavary/laravel-menu/tree/v1.8.3"
+            },
             "time": "2021-02-22T16:41:26+00:00"
         },
         {
@@ -7938,5 +7942,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

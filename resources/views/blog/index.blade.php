@@ -22,7 +22,7 @@
 
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="">
+		<div class="content">
 			<h1>Blog Posts</h1>
 			<div class="row">
 				@foreach ($articles as $article)

@@ -19,10 +19,15 @@ class PostController extends Controller
         $article_count = Article::all()->count();
         $articles = $this->list();
 
-        return view('blog.index', [
+        $styles = $this->addStyles();
+
+        $data = [
             'article_count' => $article_count,
-            'articles'      => $articles
-        ]);
+            'articles'      => $articles,
+            'styles'        => $styles
+        ];
+
+        return view('blog.index', $data);
     }
 
     /**
@@ -57,5 +62,16 @@ class PostController extends Controller
             'article'      => $article,
             'author'       => $author->nick
         ]);
+    }
+
+    /**
+     * Adding styles for blog page 
+     */
+    public function addStyles(){
+        $styles = [
+            'css/blog.css'
+        ];
+
+        return $styles;
     }
 }
