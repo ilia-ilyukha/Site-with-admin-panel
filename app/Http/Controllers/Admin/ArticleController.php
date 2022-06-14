@@ -21,7 +21,6 @@ class ArticleController extends Controller
      */
     public function index()
     {
-
         $article_count = Article::all()->count();
         $articles = $this->list();
         foreach ($articles as $article) {
@@ -56,10 +55,10 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $article = new Article();
-
+        
         $article->name = $request->title;
         $article->status_id = $request->status;
-        $article->annotation = $request->annotation;
+        $article->annotation = $this->cutString(htmlentities($request->text, ENT_NOQUOTES, 'UTF-8'), 50);
         $article->author_id = $request->author;
         $article->created_at = date('Y-m-d'); 
         $article->text = htmlentities($request->text, ENT_NOQUOTES, 'UTF-8');
@@ -68,7 +67,14 @@ class ArticleController extends Controller
 
         return redirect()->back()->withSuccess('Статья была успешно добавлена!');
     }
+    
+    public function cutString($string, $maxlen) {
+        $string = str_replace("\n", "", $string);
+        $len = (mb_strlen($string) > $maxlen)? mb_strripos(mb_substr($string, 0, $maxlen), ' ') : $maxlen;
+        $cutStr = mb_substr($string, 0, $len);
 
+        return (mb_strlen($string) > $maxlen)? $cutStr.' ...' : $cutStr;
+    }
     /**
      * Display the specified resource.
      *

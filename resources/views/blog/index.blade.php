@@ -18,6 +18,14 @@
 		width: 150px;
 		height: 200px;
 	}
+
+	.img-uploaded{
+		width: 100%;
+    	text-align: center;
+	}
+	.img-uploaded img{
+		width: auto;
+	}
 </style>
 
 <div class="container">
@@ -34,7 +42,10 @@
 								{{ $article->name }}
 							
 						</h2>
-						<img src="{{ $article->image }}" alt="" class="img-uploaded" style="display: block; width: 300px">
+						<div class="img-uploaded">
+							<img src="/public/images/blog/{{ $article->image }}" alt="" >
+						</div>
+						
 						<p>{{ $article->annotation }}</p>
 						<h4>By {{ $article->nickname }}.</h4>
 						</a>

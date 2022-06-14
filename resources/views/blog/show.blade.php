@@ -12,7 +12,9 @@
 
             <p>{{ $article['name'] }}</p>
             <p></p>
-            <img src="{{ $article['image'] }}" />
+            <div class="img-uploaded">
+                <img src="/public/images/blog/{{ $article['image'] }}" alt="">
+            </div>
             <div class="container">{!! $article['text'] !!}</div>
             <p>{{ $article['created_at'] }}</p>
             {{ $author }}
