@@ -43,6 +43,11 @@ class PostController extends Controller
             ->take(10)
             ->get(['articles.*', 'article_authors.nick as nickname']);
 
+        foreach ($articles as $article) {
+            $article['image'] = $article->getImage($article['image']);            
+            $article['annotation'] = html_entity_decode($article['annotation']);
+        }
+
         return $articles;
     }
 
@@ -56,6 +61,8 @@ class PostController extends Controller
     {
         $article = Article::findOrFail($id);
         $article['text'] = html_entity_decode($article['text']);
+        $article['annotation'] = html_entity_decode($article['annotation']);
+        $article['image'] = $article->getImage($article['image']);
         $author = DB::table('article_authors')->find($article['author_id']);
 
         return view('blog.show', [

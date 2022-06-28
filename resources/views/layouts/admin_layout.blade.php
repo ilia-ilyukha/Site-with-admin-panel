@@ -55,10 +55,13 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
+          <a href="/" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="/" target="_blank" class="nav-link">Site</a>
         </li>
       </ul>
 
@@ -289,7 +292,7 @@
                   </a>
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                      <a href="{{ route('tasks.index') }}" class="nav-link">
+                      <a href="/admin_panel/my-tasks" class="nav-link">
                         <i class="nav-icon fas fa-minus"></i>
                         <p>My tasks</p>
                       </a>

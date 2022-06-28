@@ -19,11 +19,12 @@
 		height: 200px;
 	}
 
-	.img-uploaded{
+	.img-uploaded {
 		width: 100%;
-    	text-align: center;
+		text-align: center;
 	}
-	.img-uploaded img{
+
+	.img-uploaded img {
 		width: auto;
 	}
 </style>
@@ -36,18 +37,16 @@
 				@foreach ($articles as $article)
 				<div class="col-xs-12">
 					<div class="post-thumb">
-					<a href="{{ route('blog.show', $article) }}" class="link">
-						<h2>
-							
+						<a href="{{ route('blog.show', $article) }}" class="link">
+							<h2>
 								{{ $article->name }}
-							
-						</h2>
-						<div class="img-uploaded">
-							<img src="/public/images/blog/{{ $article->image }}" alt="" >
-						</div>
-						
-						<p>{{ $article->annotation }}</p>
-						<h4>By {{ $article->nickname }}.</h4>
+							</h2>
+							<div class="img-uploaded">
+								<img src="{{ $article->image }}" alt="">
+							</div>
+
+							<p>{{ $article->annotation }}</p>
+							<h4>By {{ $article->nickname }}.</h4>
 						</a>
 					</div>
 				</div>

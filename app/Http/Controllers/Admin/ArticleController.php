@@ -95,6 +95,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         $article['text'] = html_entity_decode($article['text']);
+        $article['annotation'] = html_entity_decode($article['annotation']);
         $author = DB::table('article_authors')->find($article['author_id']);
         $authors = DB::table('article_authors')->get();
         return view('admin.article.edit', [

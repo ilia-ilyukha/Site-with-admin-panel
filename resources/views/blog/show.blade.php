@@ -13,7 +13,7 @@
             <p>{{ $article['name'] }}</p>
             <p></p>
             <div class="img-uploaded">
-                <img src="/public/images/blog/{{ $article['image'] }}" alt="">
+                <img src="{{ $article['image'] }}" alt="">
             </div>
             <div class="container">{!! $article['text'] !!}</div>
             <p>{{ $article['created_at'] }}</p>
