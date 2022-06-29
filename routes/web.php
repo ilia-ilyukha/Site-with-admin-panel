@@ -20,14 +20,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/', function () {
+    return redirect('/blog');
+});
 Route::resource('blog', PostController::class)->only(['index', 'show']);
 
 Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
@@ -41,6 +43,8 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     // Request for adding hours to task
     Route::post('tasks/addHours', [App\Http\Controllers\Admin\TaskController::class, 'addHours'])->name('tasks/addHours');
 
+    Route::get('/my-tasks', [App\Http\Controllers\Admin\TaskController::class, 'myTasks']);
+
     Route::resource('employers', EmployersController::class);
     Route::resource('departments', DepartmentController::class);
 
@@ -48,3 +52,7 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::post('employers-import', [EmployersController::class, 'import'])->name('employers-import');
 
 });
+
+// Route::get('/home-test', [App\Http\Controllers\HomeController::class, 'test'])
+// ->middleware('test_middleware')
+// ->name('home-test');
