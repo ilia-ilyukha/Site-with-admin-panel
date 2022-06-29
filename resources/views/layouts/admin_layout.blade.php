@@ -31,7 +31,7 @@
   <!-- jQuery -->
   <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
   <!-- jQuery UI 1.11.4 -->
-  <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>  <!-- JQVMap -->
+  <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script> <!-- JQVMap -->
   <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
   <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
   <!-- jQuery Knob Chart -->
@@ -251,22 +251,32 @@
                         </p>
                       </a>
                       <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                          <a href="{{ route('articles.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-minus"></i>
-                            <p>Articles List</p>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="{{ route('articles.create') }}" class="nav-link">
-                            <i class="nav-icon fas fa-minus"></i>
-                            <p>
-                              Add article
-                              <i class="right fas "></i>
-                            </p>
-                          </a>
-                        </li>
+
                       </ul>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('articles.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-minus"></i>
+                        <p>Articles List</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('articles.create') }}" class="nav-link">
+                        <i class="nav-icon fas fa-minus"></i>
+                        <p>
+                          Add article
+                          <i class="right fas "></i>
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('comments.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-minus"></i>
+                        <p>
+                          Comments
+                          <i class="right fas "></i>
+                        </p>
+                      </a>
                     </li>
                     <li class="nav-item">
                       <a href="{{ route('category.index') }}" class="nav-link">
@@ -284,7 +294,7 @@
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-edit"></i>
+                    <i class="nav-icon fas fa-edit"></i>
                     <p>
                       Tasks
                       <i class="right fas fa-angle-left"></i>
@@ -328,10 +338,10 @@
                     </li>
                     <li class="nav-item">
                       <a href="{{ route('product.create') }}" class="nav-link">
-                      <a href="{{ route('employers.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-plus"></i>
-                        <p>Add product</p>
-                      </a>
+                        <a href="{{ route('employers.index') }}" class="nav-link">
+                          <i class="nav-icon fas fa-plus"></i>
+                          <p>Add product</p>
+                        </a>
                     </li>
 
                   </ul>
@@ -339,17 +349,17 @@
                 <li class="nav-item">
                   <a href="{{ route('employers.index') }}" class="nav-link">
                     <i class=" nav-icon fas fa-user"></i>
-                      <p>
-                        Employers
-                      </p>
+                    <p>
+                      Employers
+                    </p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('departments.index') }}" class="nav-link">
                     <i class=" nav-icon fas fa-user"></i>
-                      <p>
-                        Departments
-                      </p>
+                    <p>
+                      Departments
+                    </p>
                   </a>
                 </li>
               </ul>

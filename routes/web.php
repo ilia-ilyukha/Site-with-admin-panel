@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\EmployersController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\TrelloController;
 use App\Http\Controllers\Admin\Catalog\ProductController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Blog\PostController;
+use App\Http\Controllers\Blog\PostCommentController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', function () {
     return redirect('/blog');
 });
-Route::resource('blog', PostController::class)->only(['index', 'show']);
+Route::resource('blog', PostController::class)->only(['index', 'show']);    
+
+// Request for adding comment to post
+Route::post('blog/addComment', [PostCommentController::class, 'add'])->name('blog/addComment');
 
 Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index']);
@@ -38,6 +43,8 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     // Route::get('/articles', [App\Http\Controllers\Admin\ArticleController::class, 'index']);
     Route::resource('product', ProductController::class);
     Route::resource('articles', ArticleController::class);
+    Route::resource('comments', CommentController::class);
+
     Route::resource('category', CategoryController::class);
     Route::resource('tasks', TaskController::class);
     // Request for adding hours to task

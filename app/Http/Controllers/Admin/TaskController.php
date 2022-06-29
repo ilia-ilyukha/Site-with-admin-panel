@@ -28,7 +28,20 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = $this->list();
+        
+
+        $tasks = $this->list([]);
+        return view('admin.task.index', [
+            'tasks' => $tasks
+        ]);
+    }
+
+    public function myTasks(){
+        $filters = [
+            ['tasks.assignee', '=', Auth::user()->id],
+        ];
+
+        $tasks = $this->list($filters);
         return view('admin.task.index', [
             'tasks' => $tasks
         ]);
@@ -92,7 +105,7 @@ class TaskController extends Controller
     {
         $users = User::get();
         $hours = $this->hoursList($task['id']);
-        $hours_quantity = TasksHours::where('task_id', $task['id'])->sum('quantity');
+        $hours_quantity = $this->hoursQuantity($task['id']);
 
         $assignees = TasksDevelopers::where('task_id', $task['id'])->get();       
         //  echo '<pre>'; var_dump($assignees); die('123');
@@ -114,10 +127,6 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
     public function update(Request $request, Tasks $task)
     {
         //
@@ -156,16 +165,23 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->back()->withSuccess('Task has been removed!');
     }
+
     /**
      * Get tasks list .
      *
      * @return \Illuminate\Http\Response
      */
-    public function list()
-    {
+    public function list( array $filters = [] )
+    {        
         $tasks = Tasks::leftJoin('users', 'tasks.assignee', '=', 'users.id')
+            ->where($filters)
             ->orderBy('id', 'DESC')
             ->get(['tasks.*', 'users.name']);
+
+        // if(true){
+        //     $tasks::where('tasks.assignee', '=', '3');    
+        // }
+
         return $tasks;
     }
 
@@ -183,6 +199,7 @@ class TaskController extends Controller
 
         return redirect()->back()->withSuccess('Hours have ben added!');
     }
+
     /**
      * Get hours for task list .
      *
@@ -194,5 +211,16 @@ class TaskController extends Controller
         return TasksHours::where('task_id', $task_id)
             ->join('users', 'users.id', '=', 'tasks_hours.assignee_id')
             ->get(['tasks_hours.*', 'users.name as assignee']);
+    }
+
+    /**
+     * Get quantity hours for task list .
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function hoursQuantity($task_id)
+    {
+        return TasksHours::where('task_id', $task_id)->sum('quantity');
     }
 }
