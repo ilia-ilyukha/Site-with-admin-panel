@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Comment;
+
 class CommentController extends Controller
 {
     /**
@@ -16,6 +18,9 @@ class CommentController extends Controller
     {
         //
         $data = [];
+
+        $data['comments'] = Comment::all();
+
         return view('admin.article.comment', $data);
     }
 
@@ -57,8 +62,19 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
+        return view('admin.article.editComment', [
+            'comment' => $comment
+        ]);
+        // "id" => 1
+        // "post_id" => 28
+        // "name" => "Ilia"
+        // "email" => "1@gmail.com"
+        // "text" => "Test Test Test"
+        // "approved" => 0
+        // "created_at" => "2022-06-29 00:00:00"
+        // "updated_at" => "2022-06-29 14:55:37"
         //
     }
 
