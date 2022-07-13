@@ -32,6 +32,7 @@
               <th>name</th>
               <th>email</th>
               <th>Date</th>
+              <th>Post</th>
               <th>Status</th>
               <th></th>
             </tr>
@@ -43,6 +44,7 @@
               <td> {{ $comment->name }}</td>
               <td> {{ $comment->email }}</td>
               <td>{{ $comment->created_at }}</td>
+              <td><a href="{{ route('blog.show', $comment->post_id) }}" class="link" target="_blank"> {{ $comment->post_id }}</td>
               <td><span class="tag tag-success">{{ $comment->approved }}</span></td>
               <td>
                 <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline-block">

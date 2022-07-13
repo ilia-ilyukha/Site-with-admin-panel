@@ -10,7 +10,11 @@ use App\Http\Controllers\Admin\Catalog\ProductController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Blog\PostController;
 use App\Http\Controllers\Blog\PostCommentController;
+use App\Http\Controllers\PostTestController;
+
+use App\Http\Controllers\Admin\Users\UsersController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,8 +62,5 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::get('employers-import', [EmployersController::class, 'import'])->name('employers-import');
     Route::post('employers-import', [EmployersController::class, 'import'])->name('employers-import');
 
+    Route::resource('users', UsersController::class)->except(['show']);   
 });
-
-// Route::get('/home-test', [App\Http\Controllers\HomeController::class, 'test'])
-// ->middleware('test_middleware')
-// ->name('home-test');
