@@ -36,6 +36,7 @@
   <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
   <!-- jQuery Knob Chart -->
   <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+  @stack('links')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -343,11 +344,20 @@
                     </p>
                   </a>
                 </li>
+
                 <li class="nav-item">
                   <a href="{{ route('departments.index') }}" class="nav-link">
                     <i class=" nav-icon fas fa-user"></i>
                     <p>
                       Departments
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('users.index') }}" class="nav-link">
+                    <i class=" nav-icon fas fa-user"></i>
+                    <p>
+                      Users
                     </p>
                   </a>
                 </li>
@@ -1039,8 +1049,8 @@
   <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  @stack('scripts')
 </body>
 
 </html>
