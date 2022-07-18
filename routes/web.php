@@ -13,6 +13,8 @@ use App\Http\Controllers\Blog\PostCommentController;
 use App\Http\Controllers\PostTestController;
 
 use App\Http\Controllers\Admin\Users\UsersController;
+use App\Http\Controllers\Admin\Users\UserPermissionController;
+use App\Http\Controllers\Admin\Users\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,4 +65,6 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::post('employers-import', [EmployersController::class, 'import'])->name('employers-import');
 
     Route::resource('users', UsersController::class)->except(['show']);   
+    Route::resource('permissions', UserPermissionController::class);
+    Route::resource('roles', UserRoleController::class);
 });

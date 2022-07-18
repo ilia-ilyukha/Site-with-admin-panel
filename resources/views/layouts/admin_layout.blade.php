@@ -353,13 +353,40 @@
                     </p>
                   </a>
                 </li>
+                
                 <li class="nav-item">
-                  <a href="{{ route('users.index') }}" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class=" nav-icon fas fa-user"></i>
                     <p>
                       Users
+                      <i class="right fas fa-angle-left"></i>
                     </p>
                   </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="{{ route('users.index') }}" class="nav-link">
+                        <i class=" nav-icon fas fa-user"></i>
+                        <p>
+                          Users
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('permissions.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-minus"></i>
+                        <p>User permissions</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('users.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-minus"></i>
+                        <p>
+                          User Roles (to do)
+                          <i class="right fas "></i>
+                        </p>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </li>

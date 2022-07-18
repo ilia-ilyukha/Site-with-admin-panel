@@ -28,7 +28,7 @@ class UsersController extends Controller
         $data['roles'] = \Spatie\Permission\Models\Role::all();
         $data['user_roles'] = $user->getRoleNames();
         $data['user'] = $user;
-
+        
         return view('admin.users.edit', $data);
     }
 
