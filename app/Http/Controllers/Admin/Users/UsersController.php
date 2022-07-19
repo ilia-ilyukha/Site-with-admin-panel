@@ -25,6 +25,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        $user->givePermissionTo('add_edit_roles');
+
+        die();
         $data['roles'] = \Spatie\Permission\Models\Role::all();
         $data['user_roles'] = $user->getRoleNames();
         $data['user'] = $user;

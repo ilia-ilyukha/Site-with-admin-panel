@@ -8,9 +8,10 @@
 
 <section class="content">
     <div class="container-fluid">
+        <div class="float-end"><a href="{{ route('permissions.create') }}" class="btn btn-info btn-sm">Add permission</a></div>    
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Статьи блога</h3>
+                <h3 class="card-title">Permissions:</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -71,3 +72,4 @@
 </section>
 
 @endsection
+

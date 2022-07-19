@@ -41,7 +41,11 @@ class TaskController extends Controller
             ['tasks.assignee', '=', Auth::user()->id],
         ];
 
-        $tasks = $this->list($filters);
+        $tasks = Tasks::leftJoin('tasks_developers', 'tasks.id', '=', 'tasks_developers.task_id')
+        ->where('tasks_developers.developer_id', '=', Auth::user()->id)
+        ->orderBy('id', 'DESC')
+        ->get(['tasks.*']);
+
         return view('admin.task.index', [
             'tasks' => $tasks
         ]);
