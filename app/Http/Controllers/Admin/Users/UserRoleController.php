@@ -88,11 +88,8 @@ class UserRoleController extends Controller
      */
     public function update(Request $request, $role_id)
     {
-        $this->removeAllPermission($role_id);
         $role = Role::findById($role_id);
-        foreach ($request->permissions as $permission) {
-            $role->givePermissionTo($permission);
-        }
+        $role->syncPermissions($request->permissions);
 
         return redirect()->back()->withSuccess('Role has been updated!');
     }
