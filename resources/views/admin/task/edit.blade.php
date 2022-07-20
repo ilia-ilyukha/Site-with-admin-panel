@@ -7,6 +7,16 @@
 @endpush
 
 @section('content')
+<style>
+.select2-selection__choice{    
+
+}
+.select2-selection__choice__display{
+    padding: 0 10px;
+    padding-left: 25px;
+    color: #444;
+}    
+</style>
 <section class="content">
     <div class="container-fluid">
         <div class="row">

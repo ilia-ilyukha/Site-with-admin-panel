@@ -28,7 +28,15 @@
                             <label for="inputName" class="col-sm-2 col-form-label">Have permissions:</label>
                             @foreach ($permissions as $permission)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $permission->name }}" name='permissions[]'/>
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    value="{{ $permission->name }}" 
+                                    name='permissions[]'
+                                    @if (in_array($permission->id, $role_permissions) )                                          
+                                        checked=""
+                                    @endif
+                                />
                                 <label class="form-check-label">{{ $permission->name }}</label>
                             </div>
                             @endforeach

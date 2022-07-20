@@ -10,10 +10,15 @@ use App\Models\Tasks;
 use App\Models\TasksHours;
 use App\Models\TasksDevelopers;
 use App\Models\User;
+use Spatie\Permission\Traits\HasRoles;
+
+use App\Http\Filters\TaskFilter;
 
 class TaskController extends Controller
 {
+    use HasRoles;
 
+    public $user;
     /*
     TODO:
     Calendar with planning tasks;
@@ -21,30 +26,28 @@ class TaskController extends Controller
     Task history;
     */
 
+    public function __construct(){
+        $this->user = Auth::user();
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TaskFilter $filter)
     {
-        
-
-        $tasks = $this->list([]);
+        $tasks = $this->list($filter);
         return view('admin.task.index', [
             'tasks' => $tasks
         ]);
     }
 
-    public function myTasks(){
+    public function myTasks(TaskFilter $filter){
         $filters = [
             ['tasks.assignee', '=', Auth::user()->id],
         ];
 
-        $tasks = Tasks::leftJoin('tasks_developers', 'tasks.id', '=', 'tasks_developers.task_id')
-        ->where('tasks_developers.developer_id', '=', Auth::user()->id)
-        ->orderBy('id', 'DESC')
-        ->get(['tasks.*']);
+        $tasks = $this->list($filter);
 
         return view('admin.task.index', [
             'tasks' => $tasks
@@ -106,13 +109,17 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Tasks $task)
-    {
+    {        
+        $assignees = TasksDevelopers::where('task_id', $task['id'])->get();
+ 
+        if( !in_array( Auth::user()->id, $assignees->pluck('developer_id')->toArray()) && !Auth::user()->hasRole('superadmin')){
+            abort(403);
+        }
+
         $users = User::get();
         $hours = $this->hoursList($task['id']);
         $hours_quantity = $this->hoursQuantity($task['id']);
 
-        $assignees = TasksDevelopers::where('task_id', $task['id'])->get();       
-        //  echo '<pre>'; var_dump($assignees); die('123');
 
         return view('admin.task.edit', [
             'task' => $task,
@@ -175,16 +182,12 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function list( array $filters = [] )
+    public function list( $filter )
     {        
         $tasks = Tasks::leftJoin('users', 'tasks.assignee', '=', 'users.id')
-            ->where($filters)
+            ->filter($filter)
             ->orderBy('id', 'DESC')
             ->get(['tasks.*', 'users.name']);
-
-        // if(true){
-        //     $tasks::where('tasks.assignee', '=', '3');    
-        // }
 
         return $tasks;
     }

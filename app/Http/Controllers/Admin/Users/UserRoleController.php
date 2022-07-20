@@ -71,11 +71,8 @@ class UserRoleController extends Controller
 
         $data['role'] = $role;
         $data['permissions'] = Permission::all();
-        $role_permissions = new Role;
+        $data['role_permissions'] = $role->permissions->pluck('id')->toArray();
 
-        $data['role_permissions'] = $role_permissions->permissions;
-
-        // dd( $role->permissions->pluck('name'));
         return view('admin.users.roles.edit', $data);
     }
 
