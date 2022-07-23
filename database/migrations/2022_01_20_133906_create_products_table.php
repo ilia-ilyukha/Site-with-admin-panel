@@ -13,17 +13,20 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->char('model', 64);
-            $table->text('text');
-            $table->char('sku', 64);
-            $table->integer('quantity');
-            $table->integer('stock_status_id');
-            $table->char('image', 255);
-            $table->float('price', 15,8);
-            $table->integer('status');
-        });
+
+        if (!Schema::hasTable('tasks_developers')) {
+            Schema::create('products', function (Blueprint $table) {
+                $table->id();
+                $table->char('model', 64);
+                $table->text('text');
+                $table->char('sku', 64);
+                $table->integer('quantity');
+                $table->integer('stock_status_id');
+                $table->char('image', 255);
+                $table->float('price', 15, 8);
+                $table->integer('status');
+            });
+        }
     }
 
     /**

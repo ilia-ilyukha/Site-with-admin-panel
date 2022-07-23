@@ -13,11 +13,14 @@ class CreateDescsTable extends Migration
      */
     public function up()
     {
-        Schema::create('descs', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
-        });
+
+        if (!Schema::hasTable('descs')) {
+            Schema::create('descs', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

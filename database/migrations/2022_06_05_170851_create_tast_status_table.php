@@ -13,13 +13,16 @@ class CreateTastStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('tast_status', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-        });
 
-        Schema::table('tasks', function ($table) {
-            $table->integer('status_id');
+        if (!Schema::hasTable('tast_status')) {
+            Schema::create('tast_status', function (Blueprint $table) {
+                $table->string('id');
+                $table->string('name');
+            });
+        }
+
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->integer('status_id')->default(1);
         });
     }
 
@@ -31,8 +34,10 @@ class CreateTastStatusTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tast_status');
-        Schema::table('tasks', function ($table) {
-            $table->dropColumn('status_id');
-        });
+        if (Schema::hasColumn('tasks', 'status_id')) {
+            Schema::table('tasks', function ($table) {
+                $table->dropColumn('status_id');
+            });
+        }
     }
 }

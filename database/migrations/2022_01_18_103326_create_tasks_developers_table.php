@@ -13,10 +13,13 @@ class CreateTasksDevelopersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks_developers', function (Blueprint $table) {
-            $table->integer('task_id');            
-            $table->integer('developer_id');
-        });
+
+        if (!Schema::hasTable('tasks_developers')) {
+            Schema::create('tasks_developers', function (Blueprint $table) {
+                $table->integer('task_id');
+                $table->integer('developer_id');
+            });
+        }
     }
 
     /**
