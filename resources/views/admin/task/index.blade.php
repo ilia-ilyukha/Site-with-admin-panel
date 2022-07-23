@@ -43,7 +43,7 @@
               <td>{{ $task->title }}</td>
               <td> {{ $task->name }}</td>
               <td>{{ $task->created_at }}</td>
-              <td><span class="tag tag-success">Approved</span></td>
+              <td><span class="tag tag-success">{{ $task->task_status }}</span></td>
               <td>
                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline-block">
                   @csrf

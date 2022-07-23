@@ -8,14 +8,13 @@
 
 @section('content')
 <style>
-.select2-selection__choice{    
+    .select2-selection__choice {}
 
-}
-.select2-selection__choice__display{
-    padding: 0 10px;
-    padding-left: 25px;
-    color: #444;
-}    
+    .select2-selection__choice__display {
+        padding: 0 10px;
+        padding-left: 25px;
+        color: #444;
+    }
 </style>
 <section class="content">
     <div class="container-fluid">
@@ -36,9 +35,18 @@
                             </div>
                         </div>
                         <div class="card-body">
+
                             <div class="form-group">
                                 <label for="name">Title</label>
                                 <input type="text" id="title" name="title" class="form-control" value="{{ $task['title'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="custom-select" name="status">
+                                    @foreach ($statuses as $status)
+                                        <option value="{{ $status->id }}" @if ($status->id == $task_status) selected @endif >{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="text">Description</label>
@@ -52,12 +60,10 @@
                                 <label for="assignee">Assignee</label>
                                 <select class="assignees-select2 custom-select rounded-0" name="assignees[]" multiple="multiple" id="assignees">
                                     @foreach ($users as $user)
-                                    <option value="{{ $user->id }}" 
-                                    @foreach ($assignees as $assignee) 
-                                        @if ($assignee->developer_id == $user->id) selected @endif          
-                                    @endforeach
+                                    <option value="{{ $user->id }}" @foreach ($assignees as $assignee) @if ($assignee->developer_id == $user->id) selected @endif
+                                        @endforeach
 
-                                    value="{{ $user->id }}"> {{ $user->name }}</option>
+                                        value="{{ $user->id }}"> {{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -18,7 +18,7 @@ class TaskStatusSeeder extends Seeder
     {
         $task_statuses = ['archived', 'open', 'new', 'pending', 'done'];
         foreach ($task_statuses as $key => $value) {
-            DB::table('tast_status')->insert([
+            DB::table('task_status')->insert([
                 'id' => $key,
                 'name' => $value,
             ]);

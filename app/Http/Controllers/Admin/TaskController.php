@@ -11,6 +11,7 @@ use App\Models\TasksHours;
 use App\Models\TasksDevelopers;
 use App\Models\User;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Filters\TaskFilter;
 
@@ -119,7 +120,8 @@ class TaskController extends Controller
         $users = User::get();
         $hours = $this->hoursList($task['id']);
         $hours_quantity = $this->hoursQuantity($task['id']);
-
+        $statuses = DB::table('task_status')->get();
+        $status = DB::table('task_status')->where('id', $task->status_id)->first();
 
         return view('admin.task.edit', [
             'task' => $task,
@@ -127,7 +129,9 @@ class TaskController extends Controller
             'hours_quantity' => $hours_quantity,
             'assignees' => $assignees,
             'users' => $users,
-            'authors' => $users
+            'authors' => $users,
+            'statuses' => $statuses,
+            'task_status' => $status->id
         ]);
     }
 
@@ -143,6 +147,7 @@ class TaskController extends Controller
         //
         //***Code adds for more than one developers.
         //
+        
         if (count($request->assignees) > 0) {
             TasksDevelopers::where('task_id', $task->id)->delete();
 
@@ -159,6 +164,7 @@ class TaskController extends Controller
         $task->assignee = $request->assignees[0];
         $task->description = $request->description;
         $task->author_id = $request->author;
+        $task->status_id = $request->status;
         // $task->priority_id = $request->priority_id;
         $task->save();
 
@@ -185,9 +191,10 @@ class TaskController extends Controller
     public function list( $filter )
     {        
         $tasks = Tasks::leftJoin('users', 'tasks.assignee', '=', 'users.id')
+            ->leftJoin('task_status', 'tasks.status_id', '=', 'task_status.id')
             ->filter($filter)
             ->orderBy('id', 'DESC')
-            ->get(['tasks.*', 'users.name']);
+            ->get(['tasks.*', 'users.name', 'task_status.name as task_status']);
 
         return $tasks;
     }

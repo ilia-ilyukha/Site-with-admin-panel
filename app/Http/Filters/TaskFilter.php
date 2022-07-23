@@ -14,6 +14,10 @@ class TaskFilter extends QueryFilter
         $this->builder->where('author_id', strtolower($author_id));
     }
 
+    public function status_id(string $status_id)
+    {
+        $this->builder->where('status_id', strtolower($status_id));
+    }
     // /**
     //  * @param string $title
     //  */
