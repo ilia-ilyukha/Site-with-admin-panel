@@ -25,16 +25,6 @@ class CreateTasksTable extends Migration
             });
         }
 
-        if (!Schema::hasTable('tasks_hours')) {
-            Schema::create('tasks_hours', function (Blueprint $table) {
-                $table->id();
-                $table->integer('task_id');
-                $table->integer('assignee_id');
-                $table->char('description', 50);
-                $table->integer('quantity');
-                $table->timestamps();
-            });
-        }
     }
 
     /**
