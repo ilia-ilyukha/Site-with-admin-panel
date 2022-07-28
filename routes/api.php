@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth_api')->get('/user/{id}', function(Request $request, $id){
+    $user = \App\Models\User::find($id);
+    if(!$user) return response('', 404);
+
+    return $user;
+});

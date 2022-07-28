@@ -4,6 +4,9 @@
 
 @section('content')
 
+<div id="app">
+  <example-component></example-component>
+</div>
 <!-- /.row -->
 <div class="row">
   <div class="col-12">
@@ -67,4 +70,5 @@
 </div>
 <!-- /.row -->
 
+<script src="../../../js/app.js"> </script>
 @endsection

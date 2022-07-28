@@ -1,0 +1,6 @@
+.float-end{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 19px;
+  }
