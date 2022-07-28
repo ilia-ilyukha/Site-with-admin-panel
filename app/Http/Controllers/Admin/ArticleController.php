@@ -122,7 +122,7 @@ class ArticleController extends Controller
         $article->image = $request->image;
         $article->save();
 
-        return redirect()->back()->withSuccess('Статья была успешно обновлена!');
+        return redirect()->back()->withSuccess('Article has been update!');
     }
 
     /**
@@ -134,7 +134,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
-        return redirect()->back()->withSuccess('Статья была успешно удалена!');
+        return redirect()->back()->withSuccess('Article has been delete!');
     }
 
     /**

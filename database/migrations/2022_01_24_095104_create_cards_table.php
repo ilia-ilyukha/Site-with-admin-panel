@@ -13,12 +13,14 @@ class CreateCardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cards', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('desc_list_id')->constrained();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('cards')) {
+            Schema::create('cards', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->foreignId('desc_list_id')->constrained();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

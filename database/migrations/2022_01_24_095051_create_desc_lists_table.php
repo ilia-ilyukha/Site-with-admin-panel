@@ -13,12 +13,15 @@ class CreateDescListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('desc_lists', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('desc_id')->constrained();
-            $table->timestamps();
-        });
+
+        if (!Schema::hasTable('desc_lists')) {
+            Schema::create('desc_lists', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->foreignId('desc_id')->constrained();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

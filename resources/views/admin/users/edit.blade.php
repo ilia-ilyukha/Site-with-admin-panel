@@ -23,7 +23,7 @@
         <div class="card-body">
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Пользователь id#{{ $user->id }}</h3>
+                    <h3 class="card-title">User id#{{ $user->id }}</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->

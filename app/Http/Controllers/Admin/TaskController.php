@@ -89,7 +89,7 @@ class TaskController extends Controller
         $task->updated_at = date('Y-m-d'); 
         $task->save();
 
-        return redirect()->route('admin_panel/tasks')->back()->withSuccess('Статья была успешно добавлена!');
+        return redirect()->route('tasks.index')->withSuccess('Статья была успешно добавлена!');
     }
 
     /**
@@ -165,10 +165,11 @@ class TaskController extends Controller
         $task->description = $request->description;
         $task->author_id = $request->author;
         $task->status_id = $request->status;
+        $task->created_at = $request->created_at;
         // $task->priority_id = $request->priority_id;
         $task->save();
 
-        return redirect()->back()->withSuccess('Статья была успешно обновлена!');
+        return redirect()->back()->withSuccess('Task has been updated!');
     }
 
     /**

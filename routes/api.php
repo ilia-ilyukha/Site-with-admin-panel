@@ -2,9 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\PostController;
-use App\Http\Controllers\Api\JobsController;
-use App\Http\Controllers\Api\DescController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,8 +17,3 @@ use App\Http\Controllers\Api\DescController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/jobs', [JobsController::class, 'index']);
-
-Route::apiResource('descs', DescController::class);

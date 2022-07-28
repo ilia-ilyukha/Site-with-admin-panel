@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\EmployersController;
 use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\Admin\TrelloController;
 use App\Http\Controllers\Admin\Catalog\ProductController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Blog\PostController;
