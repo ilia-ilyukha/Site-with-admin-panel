@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 class PostController extends Controller
 {
     /**
